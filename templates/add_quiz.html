@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Add Quiz</h1>
+<form method="post">
+  <label>Subject<input name="subject" value="{{ request.form.get('subject', '') }}" required></label>
+  <label>Number of Questions<input name="questions" type="number" min="1" value="{{ request.form.get('questions', '') }}" required></label>
+  <label>Quiz Date<input name="quiz_date" type="date" value="{{ request.form.get('quiz_date', '') }}" required></label>
+  <button type="submit">Add Quiz</button>
+</form>
+{% endblock %}

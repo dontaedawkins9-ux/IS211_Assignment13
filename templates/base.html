@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class Quiz Tracker</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 850px; margin: 35px auto; padding: 0 18px; color: #222; }
+    nav { margin-bottom: 24px; } nav a { margin-right: 14px; }
+    table { border-collapse: collapse; width: 100%; margin: 12px 0 28px; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    th { background: #f2f2f2; } label { display: block; margin-top: 12px; }
+    input, select { display: block; padding: 8px; margin-top: 5px; min-width: 240px; }
+    button { margin-top: 18px; padding: 9px 16px; cursor: pointer; }
+    .error { color: #a00000; }
+  </style>
+</head>
+<body>
+  {% if session.get('logged_in') %}
+  <nav><a href="{{ url_for('dashboard') }}">Dashboard</a><a href="{{ url_for('logout') }}">Logout</a></nav>
+  {% endif %}
+  {% for message in get_flashed_messages() %}<p class="error">{{ message }}</p>{% endfor %}
+  {% block content %}{% endblock %}
+</body>
+</html>

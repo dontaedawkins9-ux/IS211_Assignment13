@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Add Quiz Result</h1>
+<form method="post">
+  <label>Student<select name="student_id" required>
+    {% for student in students %}<option value="{{ student.id }}" {% if request.form.get('student_id') == student.id|string %}selected{% endif %}>{{ student.first_name }} {{ student.last_name }} (ID {{ student.id }})</option>{% endfor %}
+  </select></label>
+  <label>Quiz<select name="quiz_id" required>
+    {% for quiz in quizzes %}<option value="{{ quiz.id }}" {% if request.form.get('quiz_id') == quiz.id|string %}selected{% endif %}>{{ quiz.subject }} (ID {{ quiz.id }})</option>{% endfor %}
+  </select></label>
+  <label>Score (0–100)<input name="score" type="number" min="0" max="100" value="{{ request.form.get('score', '') }}" required></label>
+  <button type="submit">Add Result</button>
+</form>
+{% endblock %}
